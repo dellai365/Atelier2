@@ -1,0 +1,27 @@
+<h3>Hello from offres-emploi-component works!</h3>
+
+<div class="wrapper" *ngFor="let emp of listeEmploi">
+    <div class="ref">
+        {{emp.reference + " |"}}
+    </div>
+    <div class="titre">
+        {{emp.titre + " |"}}
+    </div>
+    <div class="entreprise">
+        {{emp.entreprise + " |"}}
+    </div>
+    <div class="etat">
+        {{emp.etat + " |"}}
+    </div>
+    <!-- <input type="submit" value="postuler" [disabled]="!emp.etat"> -->
+    <input *ngIf="emp.etat ; else elseBlock" type="submit" value="postuler">
+    <ng-template #elseBlock>
+        <input type="submit" value="postuler" disabled>
+    </ng-template>
+
+</div>
+<button (click)="countFunction()"> Bilan</button>
+<span> {{bilan}} </span>
+<br/>
+<br/>
+<input placeholder="cherche emploi par nom d'entreprise" [(ngModel)]="term" (ngModelChange)="filtrerEmplois()">
